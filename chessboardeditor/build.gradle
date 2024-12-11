@@ -1,28 +1,18 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
-android {
-    compileSdkVersion 28
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+plugins {
+    id 'maven-publish' // Добавьте этот плагин
+    id 'java'
 }
 
-dependencies {
-    implementation(
-            "androidx.appcompat:appcompat:1.0.2"
-
-    )
-    testImplementation(
-            "junit:junit:4.12"
-    )
-    androidTestImplementation(
-            "androidx.test:runner:1.1.1",
-            "androidx.test.espresso:espresso-core:3.1.1"
-    )
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java // Для Java/Android компонентов
+            groupId = 'com.github.Dimashum1225'
+            artifactId = 'chessboardeditor'
+            version = '1.0.1' // Укажите вашу версию
+        }
+    }
+    repositories {
+        mavenLocal() // Публикация в локальный Maven репозиторий
+    }
 }
